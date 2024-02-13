@@ -2,10 +2,10 @@
   <div>
     <div v-if="showWelcomePage">
       <Welcome />
-      <ButtonControl angle="right" class="btn-next" />
+      <ButtonControl angle="right" class="btn-next" @click="goToNext('next')" />
     </div>
     <div v-else-if="showDisplayPage">
-        <ButtonControl angle="left" class="btn-back" />
+      <ButtonControl angle="left" class="btn-back" @click="goToNext('back')" />
     </div>
   </div>
 </template>
@@ -20,6 +20,17 @@ export default {
   },
   mounted() {
     console.log("process...");
+  },
+  methods: {
+    goToNext(btnValue) {
+      if (btnValue === "next") {
+        this.showWelcomePage = false;
+        this.showDisplayPage = true;
+      } else if (btnValue === "back") {
+        this.showWelcomePage = true;
+        this.showDisplayPage = false;
+      }
+    },
   },
 };
 </script>
