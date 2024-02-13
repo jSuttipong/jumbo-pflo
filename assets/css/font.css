@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Victor+Mono:wght@100;300;400;700&display=swap');
+/* Use font weight by fw-{weight} bold normal light*/
+/* h1, h2, h3, h4, h5{
+    font-family: 'Rubik Mono One', monospace;
+} */
+
+.font-rubik {
+    font-family: 'Rubik Mono One', monospace !important;
+}
+
+.font-victor {
+    font-family: 'Victor Mono', monospace !important;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+.fw-light{
+    font-weight: 300;
+}
+
+.fw-regular{
+    font-weight: 400;
+}
+
+.fw-thin{
+    font-weight: 100;
+}
+
+.fc-primary{
+    color: #0000FF;
+  }
+
+  .fc-secondary{
+    color: #FFFF00;
+  }
+
