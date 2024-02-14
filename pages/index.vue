@@ -6,20 +6,41 @@
     </div>
     <div v-else-if="showDisplayPage">
       <ButtonControl angle="left" class="btn-back" @click="goToNext('back')" />
+      <h1>My project</h1>
+      <div class="mt-5">
+        <div class="row">
+          <div
+            class="col-12"
+            v-for="item in projectInformation"
+            :key="item.projectName"
+          >
+            <CardProject
+              :projectName="item.projectName"
+              :projectDes="item.projectDes"
+              :projectImageList="item.projectImageList"
+              :projectStack="item.projectStack"
+              class="my-2 card-distance"
+            />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import folioData from "../json/folio.json";
 export default {
   data() {
     return {
       showWelcomePage: true,
       showDisplayPage: false,
+      projectInformation: [],
     };
   },
   mounted() {
-    console.log("process...");
+    console.log("working...");
+    this.handleProjectInfo(folioData);
   },
   methods: {
     goToNext(btnValue) {
@@ -29,6 +50,16 @@ export default {
       } else if (btnValue === "back") {
         this.showWelcomePage = true;
         this.showDisplayPage = false;
+      }
+    },
+    handleProjectInfo(projectList) {
+      for (let i = 0; i < projectList.length; i++) {
+        this.projectInformation.push({
+          projectName: projectList[i].name,
+          projectDes: projectList[i].des,
+          projectImageList: projectList[i].images,
+          projectStack: projectList[i].stack,
+        });
       }
     },
   },
@@ -47,5 +78,12 @@ export default {
   position: absolute;
   top: 2%;
   left: 3%;
+}
+.card-distance{
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 </style>
