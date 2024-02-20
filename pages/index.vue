@@ -2,13 +2,14 @@
   <div>
     <div v-if="showWelcomePage">
       <Welcome />
-      <ButtonControl angle="right" class="btn-next" @click="goToNext('next')" />
+      <!-- <ButtonControl angle="right" class="btn-next" @click="goToNext('next')" /> -->
+      <NuxtLink to="/project"><ButtonControl angle="right" btnText="My Project" class="btn-next"/></NuxtLink>
     </div>
     <div v-else-if="showDisplayPage">
-      <ButtonControl angle="left" class="btn-back" @click="goToNext('back')" />
+      <!-- <ButtonControl angle="left" class="btn-back" @click="goToNext('back')" /> -->
       <h1>My project</h1>
       <div class="mt-5">
-        <div class="row">
+        <div class="row m-0">
           <div
             class="col-12"
             v-for="item in projectInformation"
@@ -74,7 +75,7 @@ export default {
   right: 0;
   margin: auto;
 }
-.btn-back {
+/* .btn-back {
   position: absolute;
   top: 2%;
   left: 3%;
@@ -85,5 +86,5 @@ export default {
   margin-left: auto;
   margin-right: auto;
 
-}
+} */
 </style>

@@ -2,7 +2,7 @@
   <div class="carousel-container">
     <Carousel :wrap-around="true">
       <Slide v-for="slide in 6" :key="slide">
-        <div class="carousel__item">{{ slide }}</div>
+        <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div>
       </Slide>
 
       <template #addons>
@@ -23,13 +23,18 @@ export default defineComponent({
     Slide,
     Pagination,
   },
+  methods:{
+    slideClick(item){
+      console.log('slide click',item);
+    }
+  }
 });
 </script>
 
 <style>
 .carousel-container {
   /* position: relative; */
-  height: 200px;
+  /* height: 200px; */
 }
 .carousel__item {
   min-height: 200px;
@@ -55,6 +60,10 @@ export default defineComponent({
   border-radius: 5px;
   background-color: var(--vc-pgn-background-color);
   width: 40px;
+}
+
+.carousel__pagination-button:hover::after, .carousel__pagination-button--active::after {
+    background-color: var(--vc-pgn-active-color);
 }
 
 .carousel__prev,
