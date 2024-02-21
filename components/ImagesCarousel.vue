@@ -49,7 +49,8 @@ export default defineComponent({
 
 .carousel__pagination {
   position: absolute;
-    bottom: 5px;
+  top: 10px;
+    /* bottom: 5px; */
     left: 0;
     right: 0;
     margin: auto;

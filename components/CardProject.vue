@@ -3,7 +3,7 @@
     <div>
         <ImagesCarousel class="card-carousel"/>
     </div>
-    <div class="row p-2 card-short-info">
+    <div class="row p-2 card-short-info position-relative">
       <div class="col-8">
         {{ projectName }} <br>
         {{ projectDes }}
@@ -12,6 +12,10 @@
         <button class="btn-view " @click="handleFullImages(true)">
             View
         </button>
+      </div>
+      <div class="stack-container">
+        <TechStack stackName="Vue"  class="tech"/>
+        <TechStack stackName="Vue"  class="tech"/>
       </div>
     </div>
     <div class="full-images" v-if="showFullImages">
@@ -60,6 +64,17 @@ export default {
 .card-carousel .carousel__item{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+
+.stack-container{
+  position: absolute;
+  top: -24px;
+}
+
+.stack-container .tech{
+  width: 30px;
+  float: left;
+  margin-right: 5px;
 }
 
 
