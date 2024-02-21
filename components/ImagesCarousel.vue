@@ -4,15 +4,16 @@
       <Slide v-for="slide in imagesList" :key="slide">
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
         <div class="carousel__item" @click="slideClick(slide)">
-          <div :style="`background: url( _nuxt/assets/images/${slide}); filter: blur(2px); background-repeat: no-repeat;background-size: cover;border-top-left-radius: 20px; border-top-right-radius: 20px;`" class="w-100 h-100" ></div>
-          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" >
-
+          <div
+            :style="`background: url( _nuxt/assets/images/${slide})`"
+            class="w-100 h-100 carousel-slide-background "
+          ></div>
+          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" />
         </div>
-
       </Slide>
 
       <template #addons>
-          <Pagination />
+        <Pagination />
       </template>
     </Carousel>
   </div>
@@ -29,14 +30,14 @@ export default defineComponent({
     Slide,
     Pagination,
   },
-  mounted(){
+  mounted() {
     console.log(this.imagesList);
   },
-  methods:{
-    slideClick(item){
-      console.log('slide click',item);
-    }
-  }
+  methods: {
+    slideClick(item) {
+      console.log("slide click", item);
+    },
+  },
 });
 </script>
 
@@ -57,7 +58,7 @@ export default defineComponent({
   align-items: center;
   /* filter: blur(8px); */
 }
-.carousel__item img{
+.carousel__item img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -67,11 +68,11 @@ export default defineComponent({
 .carousel__pagination {
   position: absolute;
   top: 10px;
-    /* bottom: 5px; */
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding-inline-start: 0;
+  /* bottom: 5px; */
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding-inline-start: 0;
 }
 
 .carousel__pagination-button::after {
@@ -80,13 +81,22 @@ export default defineComponent({
   width: 40px;
 }
 
-.carousel__pagination-button:hover::after, .carousel__pagination-button--active::after {
-    background-color: var(--vc-pgn-active-color);
+.carousel__pagination-button:hover::after,
+.carousel__pagination-button--active::after {
+  background-color: var(--vc-pgn-active-color);
 }
 
 .carousel__prev,
 .carousel__next {
   box-sizing: content-box;
   border: 5px solid white;
+}
+.carousel-slide-background {
+  filter: blur(2px);
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-position: center !important;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 </style>

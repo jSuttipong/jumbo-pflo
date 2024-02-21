@@ -58,7 +58,7 @@ export default {
 .card-short-info{
   width: auto;
   margin: auto;
-  background-color: red;
+  background-color: rgba(0, 0, 255);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   
