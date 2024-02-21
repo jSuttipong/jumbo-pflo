@@ -50,9 +50,9 @@
   </script>
   <style>
   .tech-box {
-    background: rgba(255, 255, 255, 0.29);
+    /* background: rgba(255, 255, 255, 0.29);
     backdrop-filter: blur(9.5px);
-    border-radius: 10px;
+    border-radius: 10px; */
   }
   .tech-box .stack-icon {
     width: 100%;

@@ -5,10 +5,10 @@ export default defineNuxtConfig({
   components: {
     dirs: ["~/components"],
   },
-  devServer: { 
-    host: "192.168.100.69",
-    port: 3000
-  },
+  // devServer: { 
+  //   host: "192.168.100.69",
+  //   port: 3000
+  // },
   css: [
     "~/assets/css/global.css",
     "bootstrap/dist/css/bootstrap.min.css",

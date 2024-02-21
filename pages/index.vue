@@ -62,7 +62,22 @@ export default {
           projectStack: projectList[i].stack,
         });
       }
+      // for (let i = 0; i < projectList.length; i++) {
+      //   this.projectInformation.push({
+      //     projectName: projectList[i].name,
+      //     projectDes: projectList[i].des,
+      //     projectImageList: this.getImageUrl(projectList[i].images),
+      //     projectStack: projectList[i].stack,
+      //   });
+      // }
     },
+    getImageUrl(image){
+      let imagesListUrl = []
+      for (let i = 0; i < image.length; i++) {
+        imagesListUrl.push(new URL(`~/assets/images/${image[i]}`, import.meta.url))
+      }
+      return imagesListUrl
+    }
   },
 };
 </script>

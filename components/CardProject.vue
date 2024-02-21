@@ -1,7 +1,7 @@
 <template>
   <div class="card-pj-container">
     <div>
-        <ImagesCarousel class="card-carousel"/>
+        <ImagesCarousel :imagesList="projectImageList" class="card-carousel"/>
     </div>
     <div class="row p-2 card-short-info position-relative">
       <div class="col-8">
@@ -14,8 +14,7 @@
         </button>
       </div>
       <div class="stack-container">
-        <TechStack stackName="Vue"  class="tech"/>
-        <TechStack stackName="Vue"  class="tech"/>
+        <TechStack v-for="item in projectStack" :key="item" :stackName="item"  class="tech"/>
       </div>
     </div>
     <div class="full-images" v-if="showFullImages">
@@ -32,6 +31,9 @@ export default {
         showFullImages: false
       }
     },
+    mounted(){
+      // console.log(this.projectStack); 
+    },
     methods:{
       handleFullImages(value){
         this.showFullImages = value
@@ -45,7 +47,7 @@ export default {
   width: 90%;
   height: fit-content;
   border-radius: 20px;
-  background-color: aqua;
+  /* background-color: aqua; */
 }
 .btn-view{
     width: 100%;
@@ -67,8 +69,12 @@ export default {
 }
 
 .stack-container{
+  width: fit-content;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
   position: absolute;
-  top: -24px;
+  top: -35px;
+  left: 5px;
 }
 
 .stack-container .tech{

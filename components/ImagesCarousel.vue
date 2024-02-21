@@ -1,8 +1,14 @@
 <template>
   <div class="carousel-container">
     <Carousel :wrap-around="true">
-      <Slide v-for="slide in 6" :key="slide">
-        <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div>
+      <Slide v-for="slide in imagesList" :key="slide">
+        <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
+        <div class="carousel__item" @click="slideClick(slide)">
+          <div :style="`background: url( _nuxt/assets/images/${slide}); filter: blur(2px); background-repeat: no-repeat;background-size: cover;border-top-left-radius: 20px; border-top-right-radius: 20px;`" class="w-100 h-100" ></div>
+          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" >
+
+        </div>
+
       </Slide>
 
       <template #addons>
@@ -17,11 +23,14 @@ import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide } from "vue3-carousel";
 
 export default defineComponent({
-  name: "Autoplay",
+  props: ["imagesList"],
   components: {
     Carousel,
     Slide,
     Pagination,
+  },
+  mounted(){
+    console.log(this.imagesList);
   },
   methods:{
     slideClick(item){
@@ -37,14 +46,22 @@ export default defineComponent({
   /* height: 200px; */
 }
 .carousel__item {
-  min-height: 200px;
+  height: 200px;
   width: 100%;
-  background-color: #258;
+  /* background-color: #258; */
+  /* background-image: url(); */
   color: #fff;
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* filter: blur(8px); */
+}
+.carousel__item img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
 }
 
 .carousel__pagination {
