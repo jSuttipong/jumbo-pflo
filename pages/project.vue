@@ -6,7 +6,7 @@
       /></NuxtLink>
       <h1 class="mt-2 font-victor">My project</h1>
     </div>
-    <div class="project-display mt-5">
+    <div class="project-display font-victor mt-5">
       <div class="row m-0">
         <div
           class="col-12 col-sm-6 col-lg-4 col-xl-3"
@@ -23,6 +23,8 @@
         </div>
       </div>
     </div>
+    <footer>&copy; Copyright 2024 Suttipong</footer>
+
   </div>
 </template>
 

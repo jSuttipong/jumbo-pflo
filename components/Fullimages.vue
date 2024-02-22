@@ -1,9 +1,9 @@
 <template>
     <div class="full-images-container d-flex justify-content-center align-items-center">
         <div class="full-images-mask">
-            <ImagesCarousel />
+            <ImagesCarousel :imagesList="images" :imagesBg="false" />
         </div>
-        <div class="full-images-close" @click="$emit('handleFullImages',false)">
+        <div class="full-images-close d-flex justify-content-center align-items-center" @click="$emit('handleFullImages',false)">
             X
         </div>
     </div>
@@ -11,7 +11,10 @@
 
 <script>
 export default {
-    
+    props: ["images"],
+    methods(){
+        console.log("full images", this.images);
+    }
 }
 </script>
 
@@ -22,13 +25,13 @@ export default {
     height: 100dvh;
     top: 0;
     left: 0;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(0,0,0, 0.8);
     z-index: 1;
 }
 .full-images-mask{
     width: 90%;
     height: 90%;
-    background-color: red;
+    /* background-color: red; */
 }
 .full-images-mask .carousel__item{
     height: 90dvh;
@@ -40,5 +43,8 @@ export default {
     width: 50px;
     height: 50px;
     background-color: blue;
+    color:#fff;
+    border-radius: 20px;
+    cursor: pointer;
 }
 </style>

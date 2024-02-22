@@ -5,6 +5,7 @@
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
         <div class="carousel__item" @click="slideClick(slide)">
           <div
+            v-if="imagesBg"
             :style="`background: url( _nuxt/assets/images/${slide})`"
             class="w-100 h-100 carousel-slide-background "
           ></div>
@@ -24,18 +25,18 @@ import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide } from "vue3-carousel";
 
 export default defineComponent({
-  props: ["imagesList"],
+  props: ["imagesList","imagesBg"],
   components: {
     Carousel,
     Slide,
     Pagination,
   },
   mounted() {
-    console.log(this.imagesList);
+    // console.log(this.imagesList);
   },
   methods: {
     slideClick(item) {
-      console.log("slide click", item);
+      // console.log("slide click", item);
     },
   },
 });
@@ -67,7 +68,7 @@ export default defineComponent({
 
 .carousel__pagination {
   position: absolute;
-  top: 10px;
+  top: 1rem;
   /* bottom: 5px; */
   left: 0;
   right: 0;
@@ -77,13 +78,13 @@ export default defineComponent({
 
 .carousel__pagination-button::after {
   border-radius: 5px;
-  background-color: var(--vc-pgn-background-color);
+  background-color: rgba(0, 0, 255);
   width: 40px;
 }
 
 .carousel__pagination-button:hover::after,
 .carousel__pagination-button--active::after {
-  background-color: var(--vc-pgn-active-color);
+  background-color: rgb(255, 255, 0);
 }
 
 .carousel__prev,

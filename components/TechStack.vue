@@ -56,6 +56,7 @@
   }
   .tech-box .stack-icon {
     width: 100%;
+    height: 20px;
     filter: invert(1) saturate(0) brightness(2) contrast(1)
       drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
   }
