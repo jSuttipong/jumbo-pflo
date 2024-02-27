@@ -1,9 +1,12 @@
 <template>
   <div>
     <div v-if="showWelcomePage">
-      <Welcome />
+      <div class="welcome-page">
+        <Welcome />
+      </div>
       <!-- <ButtonControl angle="right" class="btn-next" @click="goToNext('next')" /> -->
-      <NuxtLink to="/project"><ButtonControl angle="right" btnText="My Project" class="btn-next"/></NuxtLink>
+      <!-- <NuxtLink to="/project"><ButtonControl angle="right" btnText="My Project" class="btn-next"/></NuxtLink> -->
+      
     </div>
     <div v-else-if="showDisplayPage">
       <!-- <ButtonControl angle="left" class="btn-back" @click="goToNext('back')" /> -->
@@ -83,6 +86,10 @@ export default {
 </script>
 
 <style>
+.welcome-page{
+  height: 100dvh;
+  position: relative;
+}
 .btn-next {
   position: absolute;
   bottom: 7%;

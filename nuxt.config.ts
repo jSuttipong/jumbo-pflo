@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "~/assets/css/global.css",
     "bootstrap/dist/css/bootstrap.min.css",
     "~/assets/css/font.css",
-    "vue3-carousel/dist/carousel.css"
+    "vue3-carousel/dist/carousel.css",
+    "~/assets/css/animate.css"
   ],
 });

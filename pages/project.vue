@@ -8,18 +8,22 @@
     </div>
     <div class="project-display font-victor mt-5">
       <div class="row m-0">
+        
         <div
           class="col-12 col-sm-6 col-lg-4 col-xl-3"
-          v-for="item in projectInformation"
-          :key="item.projectName"
+          v-for="(item,index) in projectInformation"
+          :key="index"
         >
+        <!-- <transition name="fadeInUp" mode="out-in"> -->
           <CardProject
             :projectName="item.projectName"
             :projectDes="item.projectDes"
             :projectImageList="item.projectImageList"
             :projectStack="item.projectStack"
-            class="my-2 card-distance"
+            class="my-2 card-distance "
+            :style="`animation: slideToUp 0.${5+index}s ease-in-out, fadeIn 0.${5+index}s ease-in`"
           />
+        <!-- </transition> -->
         </div>
       </div>
     </div>
@@ -84,5 +88,17 @@ export default {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* animate transition */
+.fadeInUp-enter-active,
+.fadeInUp-leave-active {
+  transition: opacity 1.2s;
+}
+
+.fadeInUp-enter,
+.fadeInUp-leave-to {
+  animation: slideToUp 1s;
+  opacity: 0;
 }
 </style>
