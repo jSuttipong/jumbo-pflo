@@ -1,10 +1,13 @@
-
+html{
+    /* overflow: hidden; */
+    /* width: auto;
+    height: auto; */
+}
 body{
     background-color: black !important;
     width: 100dvw;
     min-height: 100dvh;
     position: relative;
-    
 }
 
 footer{

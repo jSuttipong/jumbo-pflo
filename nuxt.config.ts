@@ -5,6 +5,9 @@ export default defineNuxtConfig({
   components: {
     dirs: ["~/components"],
   },
+  modules: [
+    '@vueuse/nuxt',
+  ],
   // devServer: { 
   //   host: "192.168.100.69",
   //   port: 3000

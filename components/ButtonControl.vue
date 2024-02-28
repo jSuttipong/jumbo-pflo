@@ -21,25 +21,6 @@
 <script>
 export default {
   props: ["angle","btnText"],
-  data() {
-    return {
-      arrowAngle: ">",
-    };
-  },
-  mounted() {
-    switch (this.angle) {
-      case "left":
-        this.arrowAngle = "<";
-        break;
-
-      case "right":
-        this.arrowAngle = ">";
-        break;
-      default:
-        this.arrowAngle = ">";
-        break;
-    }
-  },
 };
 </script>
 <style>

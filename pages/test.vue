@@ -1,13 +1,13 @@
 <template>
-  <div >
+  <div ref="pageEl" class="page-display">
     <section class="welcome-page" id="welcome" @scroll="onScroll()">
-        <button @click="movetoproject()">test</button>
+      <button @click="movetoproject()">test</button>
       <Welcome />
     </section>
     <section id="project">
       <div>
         <div class="project-head">
-          <h1 class="mt-2 font-victor">My project</h1>
+          <h1 class="mt-2 font-victor">My project {{ isScrolling }}</h1>
         </div>
         <div class="project-display font-victor mt-5">
           <div class="row m-0">
@@ -37,30 +37,96 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import folioData from "../json/folio.json";
+import { ref, onMounted, watchEffect, computed } from "vue";
+import { useScroll } from "@vueuse/core";
+
+// const showWelcomePage = ref(true)
+// const showDisplayPage = ref(false)
+const projectInformation = ref([]);
+// let pagesSrolling = ref(null);
+const pageEl = ref(null);
+const { x, y, isScrolling } = useScroll(pageEl);
+
+// const scrollings = computed({
+//   get(){
+//     return isScrolling
+//   }
+// })
+// console.log('sssss',showWelcomePage.value);
+
+const handleProjectInfo = (projectList) => {
+  for (let i = 0; i < projectList.length; i++) {
+    projectInformation.value.push({
+      projectName: projectList[i].name,
+      projectDes: projectList[i].des,
+      projectImageList: projectList[i].images,
+      projectStack: projectList[i].stack,
+    });
+  }
+};
+
+const getImageUrl = (image) => {
+  let imagesListUrl = [];
+  for (let i = 0; i < image.length; i++) {
+    imagesListUrl.push(new URL(`~/assets/images/${image[i]}`, import.meta.url));
+  }
+  return imagesListUrl;
+};
+
+function movetoproject() {
+  // console.log("sss", document.getElementsByTagName("section"));
+//   setTimeout(() => {
+//     document
+//     .getElementsByTagName("section")
+//     ["project"].scrollIntoView({ behavior: "smooth" });
+// }, 500)
+  // window.location.href = "#project"
+  document
+    .getElementsByTagName("section")
+    ["project"].scrollIntoView({ behavior: "smooth" });
+}
+onMounted(() => {
+  handleProjectInfo(folioData);
+  // console.log('projectInformation =>',projectInformation);
+  // testFunction()
+  const element = pageEl.value;
+  // element.addEventListener('mousemove', (e) => {
+  //   console.log(e.pageX, e.pageY)
+  // })
+  // const element = pageEl.value
+  element.addEventListener("mousewheel", (e) => {
+    if (e.deltaY < 0) {
+      console.log("scrolling up");
+    } else if (e.deltaY > 0) {
+      // movetoproject();
+      console.log("scrolling down");
+      // console.log(document.getElementsByTagName("html")[0].style.overflow = 'scroll');
+      // document.getElementsByTagName("html")[0].style.overflow = 'scroll';
+    }
+  });
+  let touchStartPosX = 0;
+  element.addEventListener('touchmove', (e) => {
+    // Different devices give different values with different decimal percentages.
+    const currentPageX = Math.round(e.changedTouches[0].screenY);
+    if (touchStartPosX === currentPageX) return;
+
+    if (touchStartPosX - currentPageX > 0) {
+      console.log("down");
+    } else {
+      console.log("up");
+    }
+    touchStartPosX = currentPageX;
+  });
+});
+</script>
+
+<script>
 export default {
-  data() {
-    return {
-      showWelcomePage: true,
-      showDisplayPage: false,
-      projectInformation: [],
-    };
-  },
-  created () {
-    window.addEventListener('scroll', this.handleScroll);
-  },
-  unmounted () {
-    window.removeEventListener('scroll', this.handleScroll);
-  },
-  mounted() {
-    console.log("working...");
-    this.handleProjectInfo(folioData);
-    this.scrollEventActive()
-  },
   methods: {
-    handleScroll(){
-        console.log('scrollscrollscroll');
+    handleScroll() {
+      console.log("scrollscrollscroll");
     },
     onScroll({ target: { scrollTop, clientHeight, scrollHeight } }) {
       console.log("scroll"); // I don't get "scroll" in console.
@@ -68,67 +134,22 @@ export default {
         console.log("bottom");
       }
     },
-    goToNext(btnValue) {
-      if (btnValue === "next") {
-        this.showWelcomePage = false;
-        this.showDisplayPage = true;
-      } else if (btnValue === "back") {
-        this.showWelcomePage = true;
-        this.showDisplayPage = false;
-      }
-    },
-    handleProjectInfo(projectList) {
-      for (let i = 0; i < projectList.length; i++) {
-        this.projectInformation.push({
-          projectName: projectList[i].name,
-          projectDes: projectList[i].des,
-          projectImageList: projectList[i].images,
-          projectStack: projectList[i].stack,
-        });
-      }
-    },
-    getImageUrl(image) {
-      let imagesListUrl = [];
-      for (let i = 0; i < image.length; i++) {
-        imagesListUrl.push(
-          new URL(`~/assets/images/${image[i]}`, import.meta.url)
-        );
-      }
-      return imagesListUrl;
-    },
-    movetoproject(){
-        document
-        .getElementsByTagName("section")
-        ['project'].scrollIntoView({ behavior: "smooth" });
-    },
-    scrollEventActive() {
-      window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-      window.addEventListener("mousewheel", this.handleMouseWheel, {
-        passive: false,
-      }); // Other browsers
-
-      window.addEventListener("touchstart", this.touchStart, {
-        passive: false,
-      }); // mobile devices
-      window.addEventListener("touchmove", this.touchMove, { passive: false }); // mobile devices
-
-      console.log('scrollEventActive');
-    },
-    scrollEventUnActive() {
-      window.removeEventListener("resize", this.onResize);
-      window.removeEventListener("mousewheel", this.handleMouseWheel, {
-        passive: false,
-      }); // Other browsers
-      window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-
-      window.removeEventListener("touchstart", this.touchStart); // mobile devices
-      window.removeEventListener("touchmove", this.touchMove); // mobile devices
-    },
+    // movetoproject() {
+    // document
+    //   .getElementsByTagName("section")
+    //   ["project"].scrollIntoView({ behavior: "smooth" });
+    // },
   },
 };
 </script>
 
 <style>
+.page-display{
+  background-color: aqua;
+  overflow: scroll;
+  height: auto;
+  width: auto;
+}
 .welcome-page {
   height: 100dvh;
   position: relative;
@@ -140,13 +161,13 @@ export default {
   right: 0;
   margin: auto;
 }
-.project-head{
+.project-head {
   height: 3rem;
   width: 100%;
   padding-top: 20px;
 }
 
-.project-head h1{
+.project-head h1 {
   text-align: center;
   color: #fff;
 }
