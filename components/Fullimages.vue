@@ -1,7 +1,7 @@
 <template>
     <div class="full-images-container d-flex justify-content-center align-items-center">
         <div class="full-images-mask">
-            <ImagesCarousel :imagesList="images" :imagesBg="false" />
+            <ImagesCarousel :imagesList="images" :imagesBg="false" :paginationPosition="'bottom'" />
         </div>
         <div class="full-images-close d-flex justify-content-center align-items-center" @click="$emit('handleFullImages',false)">
             X

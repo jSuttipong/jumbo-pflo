@@ -5,6 +5,7 @@
         <ImagesCarousel
           :imagesList="projectImageList"
           :imagesBg="true"
+          :paginationPosition="'top'"
           class="card-carousel"
         />
       </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="carousel-container">
     <!-- :class="imagesList.langth > 3 ? `more-slide` : ``" -->
-    <Carousel :wrap-around="true" :class="isMorePagination == true ? 'more-slide' : ''">
+    <Carousel :wrap-around="true" :class="[isMorePagination == true ? 'more-slide' : '', paginationPos ]">
       <!-- :class="index >= 3 ? `more-slide` : ``" -->
       <Slide v-for="(slide, index) in imagesList" :key="index">
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
@@ -27,7 +27,7 @@ import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide } from "vue3-carousel";
 
 export default defineComponent({
-  props: ["imagesList","imagesBg"],
+  props: ["imagesList","imagesBg", "paginationPosition"],
   components: {
     Carousel,
     Slide,
@@ -35,13 +35,23 @@ export default defineComponent({
   },
   data() {
     return {
-      isMorePagination: false
+      isMorePagination: false,
+      paginationPos: 'top'
     }
   },
   mounted() {
     if (this.imagesList.length > 5) {
       this.isMorePagination = true
     }
+    console.log('this.paginationPosition', this.paginationPosition);
+    if (this.paginationPosition == 'top') {
+      this.paginationPos = 'pagination-top'
+    }else if (this.paginationPosition == 'bottom') {
+      this.paginationPos = 'pagination-bottom'
+    }
+
+    console.log('this.paginationPos', this.paginationPos);
+    // console.log('paginationPosition', this.paginationPosition);
     // console.log(this.imagesList);
   },
   methods: {
@@ -78,12 +88,22 @@ export default defineComponent({
 
 .carousel__pagination {
   position: absolute;
-  top: 1rem;
+  /* top: 1rem; */
   /* bottom: 5px; */
   left: 0;
   right: 0;
   margin: auto;
   padding-inline-start: 0;
+}
+
+.pagination-top .carousel__pagination{
+  top: 1rem;
+  /* bottom: unset; */
+}
+
+.pagination-bottom .carousel__pagination{
+  top: unset;
+  bottom: 1rem !important;
 }
 
 .carousel__pagination-button::after {
@@ -108,7 +128,10 @@ export default defineComponent({
   border: 5px solid white;
 }
 .carousel-slide-background {
-  filter: blur(2px);
+  filter: blur(20px);
+  /* background-color: rgba(255, 255, 255, 0.175); */
+  /* -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px); */
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: center !important;

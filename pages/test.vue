@@ -9,7 +9,7 @@
         <div class="project-head">
           <h1 class="mt-2 font-victor">My project {{ isScrolling }}</h1>
         </div>
-        <div class=" font-victor mt-5 ">
+        <div class=" font-victor mt-5 container-md">
           <div class="row m-0">
             <div
               class="col-12 col-sm-6 col-lg-4 col-xl-3"
