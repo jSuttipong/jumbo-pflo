@@ -1,6 +1,6 @@
 [
     {
-        "name": "Cubhouse Website",
+        "name": "Cubhouse",
         "shortName": "Cubhouse",
         "banner": "cubhouse",
         "stack": [
@@ -32,10 +32,10 @@
             "ktb/3.png",
             "ktb/4.png"
         ],
-        "des": "Website"
+        "des": "Microsite"
     },
     {
-        "name": "SDGS Microsite",
+        "name": "SDGS Game Fest",
         "shortName": "SDGS",
         "banner": "sdgs",
         "stack": [
@@ -52,7 +52,7 @@
             "sdgs/4.png",
             "sdgs/6.png"
         ],
-        "des": "Website"
+        "des": "Microsite"
     }
     ,
     {
@@ -73,7 +73,7 @@
             "apt/5.png",
             "apt/6.png"
         ],
-        "des": "Website"
+        "des": "Dashboard"
     }
     ,
     {
@@ -89,7 +89,7 @@
             "ibank/2.png",
             "ibank/3.png"
         ],
-        "des": "Website"
+        "des": "Web Portal"
     }
     ,
     {
@@ -105,6 +105,6 @@
             "mportal/2.png",
             "mportal/3.png"
         ],
-        "des": "Website"
+        "des": "Web Portal"
     }
 ]

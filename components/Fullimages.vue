@@ -26,6 +26,9 @@ export default {
     top: 0;
     left: 0;
     background-color: rgba(0,0,0, 0.8);
+    background-color: rgba(255, 255, 255, 0.074);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     z-index: 1;
 }
 .full-images-mask{

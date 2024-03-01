@@ -1,7 +1,9 @@
 <template>
   <div class="carousel-container">
-    <Carousel :wrap-around="true">
-      <Slide v-for="slide in imagesList" :key="slide">
+    <!-- :class="imagesList.langth > 3 ? `more-slide` : ``" -->
+    <Carousel :wrap-around="true" :class="isMorePagination == true ? 'more-slide' : ''">
+      <!-- :class="index >= 3 ? `more-slide` : ``" -->
+      <Slide v-for="(slide, index) in imagesList" :key="index">
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
         <div class="carousel__item" @click="slideClick(slide)">
           <div
@@ -31,7 +33,15 @@ export default defineComponent({
     Slide,
     Pagination,
   },
+  data() {
+    return {
+      isMorePagination: false
+    }
+  },
   mounted() {
+    if (this.imagesList.length > 5) {
+      this.isMorePagination = true
+    }
     // console.log(this.imagesList);
   },
   methods: {
@@ -78,13 +88,18 @@ export default defineComponent({
 
 .carousel__pagination-button::after {
   border-radius: 5px;
-  background-color: rgba(0, 0, 255);
+  /* background-color: rgba(0, 0, 255); */
+  background-color: rgba(0, 0, 0, 0.3);
   width: 40px;
+}
+.more-slide .carousel__pagination-button::after{
+  width: 30px ;
 }
 
 .carousel__pagination-button:hover::after,
 .carousel__pagination-button--active::after {
-  background-color: rgb(255, 255, 0);
+  /* background-color: rgb(255, 255, 0); */
+  background-color: rgba(0, 0, 255);
 }
 
 .carousel__prev,

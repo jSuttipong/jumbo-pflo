@@ -1,47 +1,66 @@
 <template>
-  <div class="card-pj-container">
-    <div>
-        <ImagesCarousel :imagesList="projectImageList" :imagesBg="true" class="card-carousel"/>
+  <div>
+    <div class="card-pj-container">
+      <div>
+        <ImagesCarousel
+          :imagesList="projectImageList"
+          :imagesBg="true"
+          class="card-carousel"
+        />
+      </div>
+      <div class="row p-2 card-short-info position-relative">
+        <div class="col-12 card-title mb-3">
+          <span class="card-title-underline"></span>
+          <h5>{{ projectName }}</h5>
+        </div>
+        <div class="col-6 card-des">
+          <p>{{ projectDes }}</p>
+        </div>
+        <div class="col-6 d-flex align-items-center">
+          <button class="btn-view" @click="handleFullImages(true)">View</button>
+        </div>
+        <div class="stack-container d-flex align-items-center">
+          <TechStack
+            v-for="item in projectStack"
+            :key="item"
+            :stackName="item"
+            class="tech"
+          />
+        </div>
+      </div>
     </div>
-    <div class="row p-2 card-short-info position-relative">
-      <div class="col-12 card-title">
-        <h5>{{ projectName }}</h5>
-      </div>
-      <div class="col-6 card-des">
-        <p>{{ projectDes }}</p>
-      </div>
-      <div class="col-6 d-flex align-items-center">
-        <button class="btn-view " @click="handleFullImages(true)">
-            View
-        </button>
-      </div>
-      <div class="stack-container d-flex align-items-center">
-        <TechStack v-for="item in projectStack" :key="item" :stackName="item"  class="tech"/>
-      </div>
-    </div>
+
     <div class="full-images" v-if="showFullImages">
-      <Fullimages :images="projectImageList" @handleFullImages="handleFullImages" />
+      <Fullimages
+        :images="projectImageList"
+        @handleFullImages="handleFullImages"
+      />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-    props: ['projectName','projectDes','projectImageList','projectStack'],
-    data() {
-      return {
-        showFullImages: false
+  props: ["projectName", "projectDes", "projectImageList", "projectStack"],
+  data() {
+    return {
+      showFullImages: false,
+    };
+  },
+  mounted() {
+    // console.log(this.projectStack);
+  },
+  methods: {
+    handleFullImages(value) {
+      this.showFullImages = value;
+      if (value) {
+        document.getElementsByTagName("html")[0].style.overflowY = "hidden";
+      } else {
+        document.getElementsByTagName("html")[0].style.overflowY = "scroll";
       }
     },
-    mounted(){
-      // console.log(this.projectStack); 
-    },
-    methods:{
-      handleFullImages(value){
-        this.showFullImages = value
-      }
-    }
-}
+  },
+};
 </script>
 
 <style>
@@ -49,44 +68,62 @@ export default {
   width: 90%;
   height: fit-content;
   border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.074);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  top: 0;
+  left: 0;
+  margin: auto;
   /* background-color: aqua; */
 }
-.btn-view{
-    width: 100%;
-    height: 40px;
-    border-radius: 15px;
-    border: none;
+.btn-view {
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+  border: none;
 }
-.card-short-info{
+.card-short-info {
   width: auto;
   margin: auto;
-  background-color: rgba(0, 0, 255);
+  /* background-color: rgba(0, 0, 255); */
+  /* background-color: rgba(255, 255, 255, 0.074); */
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
 }
 
-.card-title{
+.card-title {
   color: #fff;
-  height: 3rem;
+  height: 2rem;
+  position: relative;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
-.card-title h5{
+.card-title h5 {
+  margin: 0;
+}
+.card-title-underline {
+  position: absolute;
+  width: 75%;
+  bottom: 0;
+  border-bottom: 1px solid #fff;
+}
+
+.card-des {
+  color: #fff;
+  margin: auto;
+}
+
+.card-des p {
   margin: 0;
 }
 
-.card-des{
-  color: #fff;
-}
-
-.card-des p{
-  margin: 0;
-}
-
-.card-carousel .carousel__item{
+.card-carousel .carousel__item {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
 
-.stack-container{
+.stack-container {
   width: fit-content;
   background: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
@@ -97,11 +134,9 @@ export default {
   /* padding: 0; */
 }
 
-.stack-container .tech{
+.stack-container .tech {
   width: 30px;
   /* float: left; */
   /* margin-right: 5px; */
 }
-
-
 </style>

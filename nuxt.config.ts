@@ -8,10 +8,10 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
   ],
-  // devServer: { 
-  //   host: "192.168.100.69",
-  //   port: 3000
-  // },
+  devServer: { 
+    host: "192.168.100.69",
+    port: 3000
+  },
   css: [
     "~/assets/css/global.css",
     "bootstrap/dist/css/bootstrap.min.css",

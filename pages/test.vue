@@ -1,7 +1,7 @@
 <template>
   <div ref="pageEl" class="page-display">
-    <section class="welcome-page" id="welcome" @scroll="onScroll()">
-      <button @click="movetoproject()">test</button>
+    <section class="welcome-page" id="welcome">
+      <!-- <button @click="moveToProjectSection()">test</button> -->
       <Welcome />
     </section>
     <section id="project">
@@ -9,7 +9,7 @@
         <div class="project-head">
           <h1 class="mt-2 font-victor">My project {{ isScrolling }}</h1>
         </div>
-        <div class="project-display font-victor mt-5">
+        <div class=" font-victor mt-5 ">
           <div class="row m-0">
             <div
               class="col-12 col-sm-6 col-lg-4 col-xl-3"
@@ -22,7 +22,7 @@
                 :projectDes="item.projectDes"
                 :projectImageList="item.projectImageList"
                 :projectStack="item.projectStack"
-                class="my-2 card-distance"
+                class="my-2"
                 :style="`animation: slideToUp 0.${
                   5 + index
                 }s ease-in-out, fadeIn 0.${5 + index}s ease-in`"
@@ -31,9 +31,9 @@
             </div>
           </div>
         </div>
-        <footer>&copy; Copyright 2024 Suttipong</footer>
       </div>
     </section>
+    <footer>&copy; Copyright 2024 Suttipong</footer>
   </div>
 </template>
 
@@ -42,19 +42,11 @@ import folioData from "../json/folio.json";
 import { ref, onMounted, watchEffect, computed } from "vue";
 import { useScroll } from "@vueuse/core";
 
-// const showWelcomePage = ref(true)
-// const showDisplayPage = ref(false)
 const projectInformation = ref([]);
-// let pagesSrolling = ref(null);
 const pageEl = ref(null);
 const { x, y, isScrolling } = useScroll(pageEl);
 
-// const scrollings = computed({
-//   get(){
-//     return isScrolling
-//   }
-// })
-// console.log('sssss',showWelcomePage.value);
+let scrollingToView = true
 
 const handleProjectInfo = (projectList) => {
   for (let i = 0; i < projectList.length; i++) {
@@ -75,80 +67,61 @@ const getImageUrl = (image) => {
   return imagesListUrl;
 };
 
-function movetoproject() {
-  // console.log("sss", document.getElementsByTagName("section"));
-//   setTimeout(() => {
-//     document
-//     .getElementsByTagName("section")
-//     ["project"].scrollIntoView({ behavior: "smooth" });
-// }, 500)
+function moveToProjectSection() {
+  scrollingToView = false
   // window.location.href = "#project"
   document
     .getElementsByTagName("section")
     ["project"].scrollIntoView({ behavior: "smooth" });
+    setTimeout(() => {
+    document.getElementsByTagName("html")[0].style.overflowY = 'scroll';
+  }, 500)
 }
 onMounted(() => {
   handleProjectInfo(folioData);
-  // console.log('projectInformation =>',projectInformation);
-  // testFunction()
   const element = pageEl.value;
-  // element.addEventListener('mousemove', (e) => {
-  //   console.log(e.pageX, e.pageY)
-  // })
-  // const element = pageEl.value
+  setTimeout(() => {
+  document
+    .getElementsByTagName("section")
+    ["welcome"].scrollIntoView();
+  })
   element.addEventListener("mousewheel", (e) => {
-    if (e.deltaY < 0) {
+    if (scrollingToView === true) {
+      if (e.deltaY < 0) {
       console.log("scrolling up");
     } else if (e.deltaY > 0) {
-      // movetoproject();
+      moveToProjectSection();
       console.log("scrolling down");
-      // console.log(document.getElementsByTagName("html")[0].style.overflow = 'scroll');
-      // document.getElementsByTagName("html")[0].style.overflow = 'scroll';
+    }
     }
   });
   let touchStartPosX = 0;
   element.addEventListener('touchmove', (e) => {
-    // Different devices give different values with different decimal percentages.
+    if (scrollingToView === true) {
+      // Different devices give different values with different decimal percentages.
     const currentPageX = Math.round(e.changedTouches[0].screenY);
     if (touchStartPosX === currentPageX) return;
 
     if (touchStartPosX - currentPageX > 0) {
       console.log("down");
+      moveToProjectSection();
     } else {
       console.log("up");
     }
     touchStartPosX = currentPageX;
+    }
   });
 });
 </script>
 
-<script>
-export default {
-  methods: {
-    handleScroll() {
-      console.log("scrollscrollscroll");
-    },
-    onScroll({ target: { scrollTop, clientHeight, scrollHeight } }) {
-      console.log("scroll"); // I don't get "scroll" in console.
-      if (scrollTop + clientHeight >= scrollHeight) {
-        console.log("bottom");
-      }
-    },
-    // movetoproject() {
-    // document
-    //   .getElementsByTagName("section")
-    //   ["project"].scrollIntoView({ behavior: "smooth" });
-    // },
-  },
-};
-</script>
-
 <style>
 .page-display{
-  background-color: aqua;
+  /* background-color: aqua; */
+  /* width: 100dvw; */
+  /* background-color: aqua;
   overflow: scroll;
   height: auto;
-  width: auto;
+  width: auto; */
 }
 .welcome-page {
   height: 100dvh;
@@ -183,12 +156,6 @@ export default {
   position: absolute;
   top: 3%;
   left: 2.1%;
-}
-.card-distance {
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* animate transition */
