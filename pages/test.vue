@@ -3,13 +3,17 @@
     <section class="welcome-page" id="welcome">
       <!-- <button @click="moveToProjectSection()">test</button> -->
       <Welcome />
+      <div class="welcome-btn" @click="moveToProjectSection()">
+        <ButtonNavigate />
+      </div>
     </section>
     <section id="project">
       <div>
         <div class="project-head">
-          <h1 class="mt-2 font-victor">My project {{ isScrolling }}</h1>
+          <h1 class="mt-2 font-victor">My project</h1>
         </div>
-        <div class=" font-victor mt-5 container-md">
+        <!-- :style="`visibility: ${scrollingToView == true ? 'hidden' : 'visible'}`" -->
+        <div class=" font-victor mt-5 container-md" >
           <div class="row m-0">
             <div
               class="col-12 col-sm-6 col-lg-4 col-xl-3"
@@ -23,10 +27,13 @@
                 :projectImageList="item.projectImageList"
                 :projectStack="item.projectStack"
                 class="my-2"
-                :style="`animation: slideToUp 0.${
-                  5 + index
-                }s ease-in-out, fadeIn 0.${5 + index}s ease-in`"
+                :style="`animation: slideToUp ${
+                  2 + (index/2)
+                }s ease-in, fadeIn ${2 + (index/2)}s ease-in`"
               />
+              <!-- :style="`animation: slideToUp ${
+                  2 + (index/2)
+                }s ease-in-out, fadeIn ${2 + (index/2)}s ease-in`" -->
               <!-- </transition> -->
             </div>
           </div>
@@ -39,14 +46,15 @@
 
 <script setup>
 import folioData from "../json/folio.json";
-import { ref, onMounted, watchEffect, computed } from "vue";
+import { ref, onMounted, watchEffect, computed, watch } from "vue";
 import { useScroll } from "@vueuse/core";
 
 const projectInformation = ref([]);
 const pageEl = ref(null);
-const { x, y, isScrolling } = useScroll(pageEl);
-
+// let scrollingToView = ref(true);
 let scrollingToView = true
+// let mouseScrollingBh = mouseScrolling(pageEl.value)
+// const { x, y, isScrolling } = useScroll(pageEl);
 
 const handleProjectInfo = (projectList) => {
   for (let i = 0; i < projectList.length; i++) {
@@ -59,13 +67,13 @@ const handleProjectInfo = (projectList) => {
   }
 };
 
-const getImageUrl = (image) => {
-  let imagesListUrl = [];
-  for (let i = 0; i < image.length; i++) {
-    imagesListUrl.push(new URL(`~/assets/images/${image[i]}`, import.meta.url));
-  }
-  return imagesListUrl;
-};
+// const getImageUrl = (image) => {
+//   let imagesListUrl = [];
+//   for (let i = 0; i < image.length; i++) {
+//     imagesListUrl.push(new URL(`~/assets/images/${image[i]}`, import.meta.url));
+//   }
+//   return imagesListUrl;
+// };
 
 function moveToProjectSection() {
   scrollingToView = false
@@ -77,14 +85,17 @@ function moveToProjectSection() {
     document.getElementsByTagName("html")[0].style.overflowY = 'scroll';
   }, 500)
 }
+
 onMounted(() => {
   handleProjectInfo(folioData);
   const element = pageEl.value;
+
   setTimeout(() => {
   document
     .getElementsByTagName("section")
     ["welcome"].scrollIntoView();
   })
+
   element.addEventListener("mousewheel", (e) => {
     if (scrollingToView === true) {
       if (e.deltaY < 0) {
@@ -95,6 +106,7 @@ onMounted(() => {
     }
     }
   });
+  
   let touchStartPosX = 0;
   element.addEventListener('touchmove', (e) => {
     if (scrollingToView === true) {
@@ -127,6 +139,24 @@ onMounted(() => {
   height: 100dvh;
   position: relative;
 }
+.welcome-btn{
+  position: absolute;
+  width: fit-content;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+#project {
+  min-height: 90dvh;
+}
+.card-animate{
+  animation-name: slideToUp;
+  animation-duration: 5s;
+  animation-timing-function: ease-in;
+}
+
+
 .btn-next {
   position: absolute;
   bottom: 7%;

@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   // devServer: { 
-  //   host: "192.168.100.69",
+  //   host: "172.27.244.244",
   //   port: 3000
   // },
   css: [
@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     "bootstrap/dist/css/bootstrap.min.css",
     "~/assets/css/font.css",
     "vue3-carousel/dist/carousel.css",
-    "~/assets/css/animate.css"
+    "~/assets/css/animate.css",
+    "~/assets/icons/close.css"
   ],
 });

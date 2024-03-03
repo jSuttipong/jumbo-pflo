@@ -1,10 +1,10 @@
 <template>
     <div class="full-images-container d-flex justify-content-center align-items-center">
-        <div class="full-images-mask">
+        <div class="full-images-mask container-md">
             <ImagesCarousel :imagesList="images" :imagesBg="false" :paginationPosition="'bottom'" />
         </div>
         <div class="full-images-close d-flex justify-content-center align-items-center" @click="$emit('handleFullImages',false)">
-            X
+            <i class="gg-close"></i>
         </div>
     </div>
 </template>
@@ -43,11 +43,14 @@ export default {
     position: absolute;
     top: 10px;
     right: 10px;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: blue;
     color:#fff;
-    border-radius: 20px;
+    border-radius: 50px;
     cursor: pointer;
+}
+.full-images-close .gg-close{
+    color: #ffff00;
 }
 </style>

@@ -43,14 +43,14 @@ export default defineComponent({
     if (this.imagesList.length > 5) {
       this.isMorePagination = true
     }
-    console.log('this.paginationPosition', this.paginationPosition);
+    // console.log('this.paginationPosition', this.paginationPosition);
     if (this.paginationPosition == 'top') {
       this.paginationPos = 'pagination-top'
     }else if (this.paginationPosition == 'bottom') {
       this.paginationPos = 'pagination-bottom'
     }
 
-    console.log('this.paginationPos', this.paginationPos);
+    // console.log('this.paginationPos', this.paginationPos);
     // console.log('paginationPosition', this.paginationPosition);
     // console.log(this.imagesList);
   },
@@ -98,7 +98,7 @@ export default defineComponent({
 
 .pagination-top .carousel__pagination{
   top: 1rem;
-  /* bottom: unset; */
+  bottom: unset;
 }
 
 .pagination-bottom .carousel__pagination{
