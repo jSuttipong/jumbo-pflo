@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="card-pj-container">
+      <div class="card-linebar" :style="`background: rgba(${projectColorRGB},0.5)`"></div>
       <div>
         <ImagesCarousel
           :imagesList="projectImageList"
@@ -42,7 +43,7 @@
 
 <script>
 export default {
-  props: ["projectName", "projectDes", "projectImageList", "projectStack"],
+  props: ["projectName", "projectDes", "projectImageList", "projectStack", "projectColorRGB"],
   data() {
     return {
       showFullImages: false,
@@ -76,6 +77,14 @@ export default {
   left: 0;
   margin: auto;
   /* background-color: aqua; */
+}
+.card-linebar{
+  position: absolute;
+  width: 35%;
+  height: 100%;
+  left: 30px;
+  /* background: rgb(0, 0, 255, 0.3); */
+  filter: blur(20px);
 }
 .btn-view {
   width: 100%;

@@ -26,6 +26,7 @@
                 :projectDes="item.projectDes"
                 :projectImageList="item.projectImageList"
                 :projectStack="item.projectStack"
+                :projectColorRGB="item.projectColorRGB"
                 class="my-2"
                 :style="`animation: slideToUp ${
                   2 + (index/2)
@@ -63,6 +64,7 @@ const handleProjectInfo = (projectList) => {
       projectDes: projectList[i].des,
       projectImageList: projectList[i].images,
       projectStack: projectList[i].stack,
+      projectColorRGB: projectList[i].colorRGB
     });
   }
 };

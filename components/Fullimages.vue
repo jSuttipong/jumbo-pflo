@@ -30,11 +30,13 @@ export default {
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     z-index: 1;
+    animation: fadeIn .2s ease-in;
 }
 .full-images-mask{
     width: 90%;
     height: 90%;
     /* background-color: red; */
+    
 }
 .full-images-mask .carousel__item{
     height: 90dvh;

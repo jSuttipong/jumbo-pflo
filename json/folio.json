@@ -16,7 +16,9 @@
             "cubhouse/5.png",
             "cubhouse/6.png"
         ],
-        "des": "Website"
+        "des": "Website",
+        "colorRGB": "231,175,6",
+        "colorHex": "E7AF06"
     },
     {
         "name": "KTB Songkran Event",
@@ -32,7 +34,9 @@
             "ktb/3.png",
             "ktb/4.png"
         ],
-        "des": "Microsite"
+        "des": "Microsite",
+        "colorRGB": "0,164,228",
+        "colorHex": "00A4E4"
     },
     {
         "name": "SDGS Game Fest",
@@ -52,7 +56,9 @@
             "sdgs/4.png",
             "sdgs/6.png"
         ],
-        "des": "Microsite"
+        "des": "Microsite",
+        "colorRGB": "105,0,137",
+        "colorHex": "690089"
     }
     ,
     {
@@ -73,7 +79,9 @@
             "apt/5.png",
             "apt/6.png"
         ],
-        "des": "Dashboard"
+        "des": "Dashboard",
+        "colorRGB": "2,58,141",
+        "colorHex": "023A8D"
     }
     ,
     {
@@ -89,7 +97,9 @@
             "ibank/2.png",
             "ibank/3.png"
         ],
-        "des": "Web Portal"
+        "des": "Web Portal",
+        "colorRGB": "23,73,23",
+        "colorHex": "174917"
     }
     ,
     {
@@ -105,6 +115,8 @@
             "mportal/2.png",
             "mportal/3.png"
         ],
-        "des": "Web Portal"
+        "des": "Web Portal",
+        "colorRGB": "235,50,55",
+        "colorHex": "EB3237"
     }
 ]
