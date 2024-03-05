@@ -22,12 +22,14 @@
           <button class="btn-view" @click="handleFullImages(true)">View</button>
         </div>
         <div class="stack-container d-flex align-items-center">
-          <TechStack
-            v-for="item in projectStack"
-            :key="item"
+          <div v-for="item in projectStack"
+            :key="item" class="stack-items">
+            <Tooltip class="stack-tooltip" :tooltipText="item"/>
+            <TechStack
             :stackName="item"
             class="tech"
           />
+          </div>
         </div>
       </div>
     </div>
@@ -90,8 +92,16 @@ export default {
   width: 100%;
   height: 40px;
   border-radius: 15px;
-  border: none;
+  border: 1px solid #fff;
+  color: #fff;
+  background: none;
 }
+
+.btn-view:hover{
+  background: #fff;
+  color: #000;
+}
+
 .card-short-info {
   width: auto;
   margin: auto;
@@ -148,5 +158,12 @@ export default {
   width: 30px;
   /* float: left; */
   /* margin-right: 5px; */
+}
+
+.stack-tooltip{
+  visibility: hidden;
+}
+.stack-items:hover .stack-tooltip{
+  visibility: visible;
 }
 </style>

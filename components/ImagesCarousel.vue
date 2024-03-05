@@ -11,7 +11,7 @@
             :style="`background: url( _nuxt/assets/images/${slide})`"
             class="w-100 h-100 carousel-slide-background "
           ></div>
-          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" />
+          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" :class="imagesBg? 'carousel-img-filter' : ''" />
         </div>
       </Slide>
 
@@ -84,6 +84,13 @@ export default defineComponent({
   height: 100%;
   object-fit: contain;
   position: absolute;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.carousel__item img.carousel-img-filter{
+  -webkit-backdrop-filter: blur(20px) ;
+  backdrop-filter: blur(20px);
 }
 
 .carousel__pagination {
@@ -128,10 +135,7 @@ export default defineComponent({
   border: 5px solid white;
 }
 .carousel-slide-background {
-  filter: blur(20px);
-  /* background-color: rgba(255, 255, 255, 0.175); */
-  /* -webkit-backdrop-filter: blur(20px);
-  backdrop-filter: blur(20px); */
+  filter: blur(2px);
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: center !important;
