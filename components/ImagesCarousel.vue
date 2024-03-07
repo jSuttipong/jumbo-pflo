@@ -136,7 +136,7 @@ export default defineComponent({
   border: 5px solid white;
 }
 .carousel-slide-background {
-  filter: blur(2px);
+  /* filter: blur(2px); */
   background-repeat: no-repeat !important;
   background-size: cover !important;
   background-position: center !important;

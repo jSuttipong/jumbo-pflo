@@ -15,12 +15,12 @@
         <!-- :style="`visibility: ${scrollingToView == true ? 'hidden' : 'visible'}`" -->
         <div class=" font-victor mt-5 container-md" >
           <div class="row m-0">
+            
             <div
               class="col-12 col-sm-6 col-lg-4 col-xl-3"
               v-for="(item, index) in projectInformation"
               :key="index"
             >
-              <!-- <transition name="fadeInUp" mode="out-in"> -->
               <CardProject
                 :projectName="item.projectName"
                 :projectDes="item.projectDes"
@@ -28,15 +28,15 @@
                 :projectStack="item.projectStack"
                 :projectColorRGB="item.projectColorRGB"
                 class="my-2"
-                :style="`animation: slideToUp ${
-                  2 + (index/2)
-                }s ease-in, fadeIn ${2 + (index/2)}s ease-in`"
+                :style="`animation:  slideToUp ${
+                  2 + (index/4)
+                }s ease-in-out, fadeIn ${2 + (index/3)}s ease-in-out`"
               />
               <!-- :style="`animation: slideToUp ${
                   2 + (index/2)
                 }s ease-in-out, fadeIn ${2 + (index/2)}s ease-in`" -->
-              <!-- </transition> -->
             </div>
+          
           </div>
         </div>
       </div>
@@ -192,6 +192,5 @@ onMounted(() => {
   top: 3%;
   left: 2.1%;
 }
-
 
 </style>

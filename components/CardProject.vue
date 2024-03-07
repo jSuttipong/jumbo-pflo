@@ -60,7 +60,7 @@ export default {
   methods: {
     handleFullImages(value) {
       this.showFullImages = value;
-      if (value) {
+      if (value == true) {
         document.getElementsByTagName("html")[0].style.overflowY = "hidden";
       } else {
         document.getElementsByTagName("html")[0].style.overflowY = "scroll";
@@ -81,6 +81,7 @@ export default {
   top: 0;
   left: 0;
   margin: auto;
+  position: relative;
   /* background-color: aqua; */
 }
 .card-linebar{

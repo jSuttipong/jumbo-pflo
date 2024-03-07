@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
   // devServer: { 
-  //   host: "172.27.244.244",
+  //   host: "172.20.10.2",
   //   port: 3000
   // },
   css: [
