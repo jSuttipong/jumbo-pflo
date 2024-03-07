@@ -6,12 +6,13 @@
       <Slide v-for="(slide, index) in imagesList" :key="index">
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
         <div class="carousel__item" @click="slideClick(slide)">
+          <!-- :style="`background: url( _nuxt/assets/images/${slide})`" -->
           <div
             v-if="imagesBg"
-            :style="`background: url( _nuxt/assets/images/${slide})`"
+            :style="`background: url( ${slide})`"
             class="w-100 h-100 carousel-slide-background "
           ></div>
-          <img :src="`_nuxt/assets/images/${slide}`" alt="project image" :class="imagesBg? 'carousel-img-filter' : ''" />
+          <img :src="`${slide}`" alt="project image" :class="imagesBg? 'carousel-img-filter' : ''" rel="preload" />
         </div>
       </Slide>
 

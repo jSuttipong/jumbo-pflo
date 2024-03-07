@@ -29,14 +29,12 @@ export default {
     background-color: rgba(255, 255, 255, 0.074);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
-    z-index: 1;
+    z-index: 3;
     animation: fadeIn .2s ease-in;
 }
 .full-images-mask{
     width: 90%;
-    height: 90%;
-    /* background-color: red; */
-    
+    height: 90%;    
 }
 .full-images-mask .carousel__item{
     height: 90dvh;

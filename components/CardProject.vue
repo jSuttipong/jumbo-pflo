@@ -33,13 +33,16 @@
         </div>
       </div>
     </div>
-
+    <transition name="modalFade" mode="out-in">
     <div class="full-images" v-if="showFullImages">
-      <Fullimages
-        :images="projectImageList"
-        @handleFullImages="handleFullImages"
-      />
+      
+        <Fullimages
+          :images="projectImageList"
+          @handleFullImages="handleFullImages"
+        />
+      
     </div>
+  </transition>
   </div>
 </template>
 
@@ -166,4 +169,29 @@ export default {
 .stack-items:hover .stack-tooltip{
   visibility: visible;
 }
+
+/* animate transition */
+.modalFade-enter-active,
+.modalFade-leave-active {
+  transition: all 0.2s;
+}
+
+/* .modalFade-enter-from{
+  animation: fadeIn ;
+  opacity: 0;
+} */
+
+.modalFade-leave-to {
+  animation: fadeOut 0.2s;
+  opacity: 0;
+}
+
+/* .modalFade-enter-active, .modalFade-leave-active {
+  transition: opacity 0.5s;
+}
+.modalFade-enter-from, .modalFade-leave-to {
+  opacity: 0;
+} */
+
+
 </style>

@@ -53,12 +53,17 @@
     /* background: rgba(255, 255, 255, 0.29);
     backdrop-filter: blur(9.5px);
     border-radius: 10px; */
+    position: relative;
+    
   }
   .tech-box .stack-icon {
     width: 100%;
     height: 20px;
     filter: invert(1) saturate(0) brightness(2) contrast(1)
       drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+    position: absolute;
+    left: 0;
+    top: -10px;
   }
   </style>
   

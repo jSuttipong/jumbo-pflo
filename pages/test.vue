@@ -43,6 +43,7 @@
     </section>
     <footer>&copy; Copyright 2024 Suttipong</footer>
   </div>
+
 </template>
 
 <script setup>
@@ -56,26 +57,26 @@ const pageEl = ref(null);
 let scrollingToView = true
 // let mouseScrollingBh = mouseScrolling(pageEl.value)
 // const { x, y, isScrolling } = useScroll(pageEl);
-
 const handleProjectInfo = (projectList) => {
   for (let i = 0; i < projectList.length; i++) {
     projectInformation.value.push({
       projectName: projectList[i].name,
       projectDes: projectList[i].des,
-      projectImageList: projectList[i].images,
+      projectImageList: getImageUrl(projectList[i].images),
       projectStack: projectList[i].stack,
       projectColorRGB: projectList[i].colorRGB
     });
   }
 };
 
-// const getImageUrl = (image) => {
-//   let imagesListUrl = [];
-//   for (let i = 0; i < image.length; i++) {
-//     imagesListUrl.push(new URL(`~/assets/images/${image[i]}`, import.meta.url));
-//   }
-//   return imagesListUrl;
-// };
+const getImageUrl = (image) => {  
+  let imagesListUrl = [];
+  for (let i = 0; i < image.length; i++) {
+    imagesListUrl.push(new URL(`/assets/images/${image[i]}`, import.meta.url).href);
+  }
+  return imagesListUrl;
+};
+
 
 function moveToProjectSection() {
   scrollingToView = false
@@ -90,6 +91,7 @@ function moveToProjectSection() {
 
 onMounted(() => {
   handleProjectInfo(folioData);
+  console.log('projectInformation => ',projectInformation.value);
   const element = pageEl.value;
 
   setTimeout(() => {
@@ -127,6 +129,7 @@ onMounted(() => {
   });
 });
 </script>
+
 
 <style>
 .page-display{
@@ -190,15 +193,5 @@ onMounted(() => {
   left: 2.1%;
 }
 
-/* animate transition */
-.fadeInUp-enter-active,
-.fadeInUp-leave-active {
-  transition: opacity 1.2s;
-}
 
-.fadeInUp-enter,
-.fadeInUp-leave-to {
-  animation: slideToUp 1s;
-  opacity: 0;
-}
 </style>
