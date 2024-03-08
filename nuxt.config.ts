@@ -2,6 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   pages: true,
+  buildModules: [],
+  app:{
+    baseURL: '/jumbo-pflo/',
+    buildAssetsDir: 'assets'
+  },
   components: {
     dirs: ["~/components"],
   },

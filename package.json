@@ -9,7 +9,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "start": "nuxt start",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@vueuse/core": "^10.8.0",
-    "@vueuse/nuxt": "^10.8.0"
+    "@vueuse/nuxt": "^10.8.0",
+    "gh-pages": "^6.1.1"
   }
 }
