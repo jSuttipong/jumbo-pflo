@@ -5,6 +5,7 @@
       <div>
         <ImagesCarousel
           :imagesList="projectImageList"
+          :projectColorRGB="projectColorRGB"
           :imagesBg="true"
           :paginationPosition="'top'"
           class="card-carousel"
@@ -172,7 +173,6 @@ export default {
 }
 
 /* animate transition */
-.modalFade-enter-active,
 .modalFade-leave-active {
   transition: all 0.2s;
 }

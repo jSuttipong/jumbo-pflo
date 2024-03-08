@@ -5,8 +5,9 @@
       <!-- :class="index >= 3 ? `more-slide` : ``" -->
       <Slide v-for="(slide, index) in imagesList" :key="index">
         <!-- <div class="carousel__item" @click="slideClick(slide)">{{ slide }}</div> -->
+        <!-- :style="`background: url( ${slide})`" -->
+        <!-- :style="`background: rgba(${projectColorRGB},0.2)`" -->
         <div class="carousel__item" @click="slideClick(slide)">
-          <!-- :style="`background: url( _nuxt/assets/images/${slide})`" -->
           <div
             v-if="imagesBg"
             :style="`background: url( ${slide})`"
@@ -28,7 +29,7 @@ import { defineComponent } from "vue";
 import { Carousel, Pagination, Slide } from "vue3-carousel";
 
 export default defineComponent({
-  props: ["imagesList","imagesBg", "paginationPosition"],
+  props: ["imagesList","imagesBg", "paginationPosition", "projectColorRGB"],
   components: {
     Carousel,
     Slide,

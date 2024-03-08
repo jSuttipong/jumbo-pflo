@@ -8,6 +8,12 @@
       <h1 class="font-victor fw-bold animated-text">{{ animated[1] }}</h1>
       <h3 class="font-victor">{{ animated[2] }}</h3>
     </div>
+    <div class="icon-link-container">
+      <a class="icon-link" href="https://drive.google.com/drive/folders/1JaE7RZAwRhuqq9D15G0REW1tpOiso0Nw?usp=drive_link" target="_blank">
+        <Tooltip class="icon-link-tooltip" tooltipText="Resume"/>
+        <img src="../assets/icons/resume.png" alt="icon">
+      </a>
+    </div>
   </div>
 </template>
 
@@ -74,5 +80,34 @@ export default {
   top: 0;
   bottom: 0;
   margin: auto;
+}
+.icon-link-container{
+  width: fit-content;
+  height: auto;
+}
+.icon-link{
+  width: 30px;
+  height: 30px;
+  border: 1px solid #fff;
+  border-radius: 50px;
+  padding: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.icon-link img{
+  width: 100%;
+  height: auto;
+  filter: contrast(0%);
+}
+
+.icon-link:hover{
+  background: #fff;
+}
+
+.icon-link-tooltip{
+  visibility: hidden;
+}
+.icon-link:hover .icon-link-tooltip{
+  visibility: visible;
 }
 </style>

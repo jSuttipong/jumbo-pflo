@@ -31,13 +31,16 @@ export default {
     backdrop-filter: blur(20px);
     z-index: 3;
     animation: fadeIn .2s ease-in;
+    
 }
 .full-images-mask{
     width: 90%;
-    height: 90%;    
+    height: 90%;
 }
 .full-images-mask .carousel__item{
-    height: 90dvh;
+    height: 90dvh; 
+}
+.full-images-mask .carousel__item img{
 }
 .full-images-close{
     position: absolute;
