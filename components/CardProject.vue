@@ -88,8 +88,10 @@ export default {
 .card-linebar{
   position: absolute;
   width: 35%;
-  height: 100%;
+  height: 70%;
   left: 30px;
+  top: 25%;
+
   /* background: rgb(0, 0, 255, 0.3); */
   filter: blur(20px);
 }

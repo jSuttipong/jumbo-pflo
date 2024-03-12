@@ -8,15 +8,18 @@
       <h1 class="font-victor fw-bold animated-text">{{ animated[1] }}</h1>
       <h3 class="font-victor">{{ animated[2] }}</h3>
     </div>
-    <div class="icon-link-container">
-      <a class="icon-link" href="https://drive.google.com/drive/folders/1JaE7RZAwRhuqq9D15G0REW1tpOiso0Nw?usp=drive_link" target="_blank">
-        <Tooltip class="icon-link-tooltip" tooltipText="Resume"/>
-        <img src="../assets/icons/resume.png" alt="icon">
+    <!-- <div class="icon-link-container" v-if="showIcon">
+      <a
+        class="icon-link"
+        href="https://drive.google.com/drive/folders/1JaE7RZAwRhuqq9D15G0REW1tpOiso0Nw?usp=drive_link"
+        target="_blank"
+      >
+        <Tooltip class="icon-link-tooltip" tooltipText="Resume" />
+        <img src="../assets/icons/resume.png" alt="icon" />
       </a>
-    </div>
+    </div> -->
   </div>
 </template>
-
 
 <script>
 export default {
@@ -30,12 +33,17 @@ export default {
       charIndex2: 0,
       charIndex3: 0,
       countLine: 1,
+      showIcon: false,
     };
   },
   async mounted() {
     await this.typeTextWelcome();
     await this.typeTextName();
-    await this.typeTextJob();
+    await this.typeTextJob().then(
+      setTimeout(() => {
+        this.showIcon = true;
+      }, 200)
+    );
   },
   methods: {
     async typeTextWelcome() {
@@ -81,11 +89,11 @@ export default {
   bottom: 0;
   margin: auto;
 }
-.icon-link-container{
+.icon-link-container {
   width: fit-content;
   height: auto;
 }
-.icon-link{
+.icon-link {
   width: 30px;
   height: 30px;
   border: 1px solid #fff;
@@ -94,20 +102,20 @@ export default {
   cursor: pointer;
   position: relative;
 }
-.icon-link img{
+.icon-link img {
   width: 100%;
   height: auto;
   filter: contrast(0%);
 }
 
-.icon-link:hover{
+.icon-link:hover {
   background: #fff;
 }
 
-.icon-link-tooltip{
+.icon-link-tooltip {
   visibility: hidden;
 }
-.icon-link:hover .icon-link-tooltip{
+.icon-link:hover .icon-link-tooltip {
   visibility: visible;
 }
 </style>

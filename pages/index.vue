@@ -1,5 +1,6 @@
 <template>
-  <div ref="pageEl" class="page-display" @mousewheel="testMouseWheel()">
+  <div ref="pageEl" @mousewheel="testMouseWheel()">
+    <Background />
     <!-- :style="`visibility: ${loadingPage == true ? 'hidden ' : 'visible'}`" -->
     <section class="welcome-page" id="welcome">
       <!-- <button @click="moveToProjectSection()">test</button> -->
@@ -20,6 +21,7 @@
               class="col-12 col-sm-6 col-lg-4 col-xl-3"
               v-for="(item, index) in projectInformation"
               :key="index"
+              :style="`visibility: ${loadingProject === true? 'hidden' : 'visible'}`"
             >
               <CardProject
                 :projectName="item.projectName"
@@ -30,9 +32,6 @@
                 class="my-2"
                 :id="`cardId${index}`"
               />
-              <!-- :style="`animation: slideToUp ${
-                  2 + (index/4)
-                }s ease-in-out, fadeIn ${2 + (index/3)}s ease-in`" -->
             </div>
           </div>
         </div>
@@ -50,6 +49,7 @@ import { useScroll } from "@vueuse/core";
 const projectInformation = ref([]);
 const pageEl = ref(null);
 const loadingPage = ref(true);
+const loadingProject = ref(true);
 // let scrollingToView = ref(true);
 let scrollingToView = true;
 // let mouseScrollingBh = mouseScrolling(pageEl.value)
@@ -87,6 +87,7 @@ function moveToProjectSection() {
     .getElementsByTagName("section")
     ["project"].scrollIntoView({ behavior: "smooth", duration: 1000 });
   addClassAnimation();
+
   setTimeout(() => {
     document.getElementsByTagName("html")[0].style.overflowY = "scroll";
   }, 2000);
@@ -100,11 +101,14 @@ function addClassAnimation() {
       .getElementById(`cardId${i}`)
       .setAttribute(
         "style",
-        `animation: slideToUp ${2 + i / 3}s ease-in-out, fadeIn ${
-          2 + i / 3
+        `animation: slideToUp ${2.4 + i / 3}s ease-in-out, fadeIn ${
+          2.4 + i / 3
         }s ease-in`
       );
   }
+  setTimeout(() => {
+  loadingProject.value = false
+  },500)
 }
 
 onMounted(() => {
@@ -135,28 +139,20 @@ onMounted(() => {
       if (touchStartPosX === currentPageX) return;
 
       if (touchStartPosX - currentPageX > 0) {
-        console.log("down");
+        // console.log("down");
         moveToProjectSection();
       } else {
-        console.log("up");
+        // console.log("up");
       }
       touchStartPosX = currentPageX;
     }
   });
 
-  loadingPage.value = false;
+  // loadingPage.value = false;
 });
 </script>
 
 <style>
-.page-display {
-  /* background-color: aqua; */
-  /* width: 100dvw; */
-  /* background-color: aqua;
-  overflow: scroll;
-  height: auto;
-  width: auto; */
-}
 .welcome-page {
   height: 100dvh;
   position: relative;
