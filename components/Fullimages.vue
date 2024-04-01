@@ -3,7 +3,7 @@
         <div class="full-images-mask container-md">
             <ImagesCarousel :imagesList="images" :imagesBg="false" :paginationPosition="'bottom'" />
         </div>
-        <div class="full-images-close d-flex justify-content-center align-items-center" @click="$emit('handleFullImages',false)">
+        <div class="full-images-close d-flex justify-content-center align-items-center" @click="$emit('handleFullImages',{isVisible: false, list: null  })">
             <i class="gg-close"></i>
         </div>
     </div>

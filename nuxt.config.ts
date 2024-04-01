@@ -4,7 +4,10 @@ export default defineNuxtConfig({
   pages: true,
   app:{
     baseURL: '/jumbo-pflo/',
-    buildAssetsDir: 'assets'
+    buildAssetsDir: 'assets',
+    head: {
+      link: [{ rel: 'icon', type: 'image/x-icon', href: "/favicon.ico" }]
+    }
   },
   components: {
     dirs: ["~/components"],

@@ -23,18 +23,29 @@
               :key="index"
               :style="`visibility: ${loadingProject === true? 'hidden' : 'visible'}`"
             >
+            
               <CardProject
                 :projectName="item.projectName"
                 :projectDes="item.projectDes"
                 :projectImageList="item.projectImageList"
                 :projectStack="item.projectStack"
                 :projectColorRGB="item.projectColorRGB"
-                class="my-2"
+                class="my-2 card-el"
                 :id="`cardId${index}`"
+                @handleFullImages="handleFullImages"
               />
             </div>
           </div>
         </div>
+        <transition name="modalFade" mode="out-in">
+        <div v-if="showFullImages">
+            <Fullimages
+              :images="fullImageList"
+              @handleFullImages="handleFullImages"
+            />
+          
+        </div>
+      </transition>
       </div>
     </section>
     <footer>&copy; Copyright 2024 Suttipong</footer>
@@ -50,10 +61,21 @@ const projectInformation = ref([]);
 const pageEl = ref(null);
 const loadingPage = ref(true);
 const loadingProject = ref(true);
+const showFullImages = ref(false);
+const fullImageList = ref([])
 // let scrollingToView = ref(true);
 let scrollingToView = true;
 // let mouseScrollingBh = mouseScrolling(pageEl.value)
 // const { x, y, isScrolling } = useScroll(pageEl);
+const title = ref('Jumbo-Portfolio')
+// const description = ref('')
+useHead({
+  title,
+  meta: [{
+    // name: 'description',
+    // content: description
+  }]
+})
 const handleProjectInfo = (projectList) => {
   for (let i = 0; i < projectList.length; i++) {
     projectInformation.value.push({
@@ -95,25 +117,38 @@ function moveToProjectSection() {
 
 function addClassAnimation() {
   // .setAttribute
+  // var animateTime = 1.5;
+  var animateDelay = 0.7;
   for (let i = 0; i < projectInformation.value.length; i++) {
     // document.getElementById(`cardId${i}`).classList.add("card-animate")
     document
       .getElementById(`cardId${i}`)
       .setAttribute(
         "style",
-        `animation: slideToUp ${2.4 + i / 3}s ease-in-out, fadeIn ${
-          2.4 + i / 3
-        }s ease-in`
+        `animation: slideToUp 1s ${animateDelay}s ease, fadeIn 1s ${animateDelay}s linear`
       );
+      // animateTime += 0.5
+      animateDelay += 0.5
   }
   setTimeout(() => {
-  loadingProject.value = false
+    loadingProject.value = false
   },500)
+
 }
+function handleFullImages(value) {
+  console.log('handleFullImages:', value.isVisible);
+      fullImageList.value = value.list
+      showFullImages.value = value.isVisible;
+      if (value.isVisible == true) {
+        document.getElementsByTagName("html")[0].style.overflowY = "hidden";
+      } else {
+        document.getElementsByTagName("html")[0].style.overflowY = "scroll";
+      }
+    }
+
 
 onMounted(() => {
   handleProjectInfo(folioData);
-  // console.log('projectInformation => ',projectInformation.value);
   const element = pageEl.value;
 
   setTimeout(() => {
@@ -171,7 +206,11 @@ onMounted(() => {
 .card-animate {
   animation: slideToUp 2s ease-in-out, fadeIn 2s ease-in;
 }
-
+.card-el{
+  will-change: transform, opacity;
+  animation-fill-mode: forwards !important;
+  opacity: 0;
+}
 .btn-next {
   position: absolute;
   bottom: 7%;

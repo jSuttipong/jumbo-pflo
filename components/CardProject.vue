@@ -20,7 +20,8 @@
           <p>{{ projectDes }}</p>
         </div>
         <div class="col-6 d-flex align-items-center">
-          <button class="btn-view" @click="handleFullImages(true)">View</button>
+          <!-- <button class="btn-view"  @click="handleFullImages(true)">View</button> -->
+          <button class="btn-view"  @click="$emit('handleFullImages',{isVisible: true, list: projectImageList})">View</button>
         </div>
         <div class="stack-container d-flex align-items-center">
           <div v-for="item in projectStack"
@@ -34,16 +35,15 @@
         </div>
       </div>
     </div>
-    <transition name="modalFade" mode="out-in">
-    <div class="full-images" v-if="showFullImages">
-      
+    <!-- <transition name="modalFade" mode="out-in">
+    <div v-if="showFullImages">
         <Fullimages
           :images="projectImageList"
           @handleFullImages="handleFullImages"
         />
       
     </div>
-  </transition>
+  </transition> -->
   </div>
 </template>
 
